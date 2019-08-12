@@ -56,7 +56,7 @@ function startCLI(args, flags = []) {
       return output;
     },
 
-    waitFor(pattern, timeout = 2000) {
+    waitFor(pattern, timeout = 9999) {
       function checkPattern(str) {
         if (Array.isArray(pattern)) {
           return pattern.every((p) => p.test(str));
@@ -98,11 +98,11 @@ function startCLI(args, flags = []) {
       });
     },
 
-    waitForPrompt(timeout = 2000) {
+    waitForPrompt(timeout = 9999) {
       return this.waitFor(/>\s+$/, timeout);
     },
 
-    waitForInitialBreak(timeout = 2000) {
+    waitForInitialBreak(timeout = 9999) {
       return this.waitFor(/break (?:on start )?in/i, timeout)
         .then(() => {
           if (isPreBreak(this.output)) {
